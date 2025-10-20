@@ -1,0 +1,11 @@
+css=/cgit.css
+logo=/cgit.png
+
+virtual-root=/
+clone-prefix=http://git.localhost
+root-title=Git server
+root-desc=Powered by Cgit
+readme=master:README.md
+
+# HAS to be last
+scan-path=/home/git/
