@@ -15,13 +15,15 @@ RUN apt-get update && \
     apt-get clean
 
 RUN useradd -m -s /usr/bin/git-shell git && \
-    mkdir -p /home/git/.ssh && \
+    mkdir -p /home/git/.ssh /cgit-config && \
     touch /home/git/.ssh/authorized_keys && \
     chown -R git:www-data /home/git && \
-    chmod 750 /home/git
+    chmod 750 /home/git && \
+    rm /etc/cgitrc && \
+    ln -s /cgit-config/cgitrc /etc/cgitrc
 
 COPY cgit/cgit.css /usr/share/cgit/cgit.css
-COPY cgit/cgitrc /etc/cgitrc
+COPY cgit/cgitrc /cgit-config/cgitrc
 COPY cgit/server.conf /etc/nginx/sites-available/default
 COPY bin/entrypoint.sh /entrypoint.sh
 COPY bin/new-git /usr/bin/new-git
